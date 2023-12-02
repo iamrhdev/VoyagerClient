@@ -3,6 +3,7 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/home/Home";
 import { useRoutes } from "react-router-dom";
 import NotFound from "../pages/notfound/NotFound";
+import Login from "../pages/login/Login";
 
 export default function Routes() {
   let routes = [
@@ -16,6 +17,10 @@ export default function Routes() {
         {
           path: "/home",
           element: <Home />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
         },
         {
           path: "*",
