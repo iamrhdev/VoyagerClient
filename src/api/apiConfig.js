@@ -10,3 +10,9 @@ const API = axios.create({
 export const loginUser = (userSignInDto) => {
   return API.post("/Accounts/Login", userSignInDto);
 };
+export const registerUser = (userRegisterDto) => {
+  return API.post("/Accounts/Register", userRegisterDto);
+};
+export const getUserByName = (userName) => {
+  return API.post("/Accounts/GetUserByName", userName);
+};

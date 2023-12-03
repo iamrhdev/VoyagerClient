@@ -4,6 +4,7 @@ import Home from "../pages/home/Home";
 import { useRoutes } from "react-router-dom";
 import NotFound from "../pages/notfound/NotFound";
 import Login from "../pages/login/Login";
+import SignUp from "../pages/signup/SignUp";
 
 export default function Routes() {
   let routes = [
@@ -21,6 +22,10 @@ export default function Routes() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/signup",
+          element: <SignUp />,
         },
         {
           path: "*",

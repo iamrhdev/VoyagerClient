@@ -9,6 +9,7 @@ import {
   Input,
   Stack,
   Image,
+  WrapItem,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { loginValidationSchema } from "../../validationSchemas/loginValidation";
@@ -47,7 +48,17 @@ export default function Login() {
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <form onSubmit={formik.handleSubmit}>
           <Stack spacing={4} w={"full"} maxW={"md"}>
-            <Heading fontSize={"2xl"}>Sign in to your account</Heading>
+            <Heading fontSize={"2xl"}>Not registered yet?</Heading>
+            <Text
+              fontSize={"14px"}
+              onClick={() => {
+                navigate("/signup");
+              }}
+              _hover={{ cursor: "pointer", textDecoration: "underline" }}
+              color={"blue.500"}
+            >
+              Click to sign up
+            </Text>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
               <Input
@@ -78,14 +89,21 @@ export default function Login() {
                 <Checkbox>Remember me</Checkbox>
                 <Text color={"blue.500"}>Forgot password?</Text>
               </Stack>
-              <Button type="submit" colorScheme={"blue"} variant={"solid"}>
-                Sign in
-              </Button>
+              <WrapItem>
+                <Button
+                  type="submit"
+                  textTransform={"uppercase"}
+                  letterSpacing={"1px"}
+                  colorScheme={"blue"}
+                  variant="solid"
+                >
+                  Sign in
+                </Button>
+              </WrapItem>
             </Stack>
           </Stack>
         </form>
       </Flex>
-
       <Flex flex={1}>
         <Image
           alt={"Login Image"}

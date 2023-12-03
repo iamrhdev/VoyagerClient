@@ -41,7 +41,6 @@ export default function Header() {
       window.removeEventListener("tokenRemoved", handleTokenRemoved);
     };
   }, [dispatch]);
-
   const handleTokenAdded = () => {
     const updatedToken = localStorage.getItem("Token");
     if (updatedToken) {
