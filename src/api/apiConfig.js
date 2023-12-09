@@ -6,6 +6,7 @@ const API = axios.create({
     "Content-Type": "application/json",
   },
 });
+// Accounts
 
 export const loginUser = (userSignInDto) => {
   return API.post("/Accounts/Login", userSignInDto);
@@ -15,4 +16,8 @@ export const registerUser = (userRegisterDto) => {
 };
 export const getUserByName = (userName) => {
   return API.post("/Accounts/GetUserByName", userName);
+};
+// Hotels
+export const getHotels = (page) => {
+  return API.get(`/Hotels/GetAll?page=${page}`);
 };

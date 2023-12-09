@@ -20,7 +20,7 @@ import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { getUserByName, registerUser } from "../../api/apiConfig";
+import { registerUser } from "../../api/apiConfig";
 import { registrationValidation } from "../../validationSchemas/registrationValidation";
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,37 +47,41 @@ export default function SignUp() {
       UserRole: "",
     },
     validationSchema: registrationValidation,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const enumValue = mapRoleToEnum(values.UserRole);
       if (enumValue != null) {
-        handleSignUp({ ...values, UserRole: enumValue });
+        try {
+          await handleSignUp({ ...values, UserRole: enumValue });
+        } catch (error) {
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            const serverError = error.response.data.error;
+
+            formik.setErrors({
+              ...formik.errors,
+              UserName: serverError,
+            });
+          } else {
+            console.log(
+              "An unexpected error occurred. Please try again later."
+            );
+          }
+        }
       }
     },
   });
-  function handleGetUserName(userName) {
-    const res = getUserByName(userName);
-    if (res) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   function handleSignUp(userRegisterDto) {
-    const result = handleGetUserName(userRegisterDto.UserName);
-    if (result === false) {
-      registerUser(userRegisterDto)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((errors) => {
-          console.log(errors);
-        })
-        .finally(() => {
-          console.log("Registered");
-        });
-    }
-    return;
+    registerUser(userRegisterDto)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((errors) => {
+        console.log(errors);
+      });
   }
   return (
     <Flex

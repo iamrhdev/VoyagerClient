@@ -58,14 +58,23 @@ export default function Header() {
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            <Image
-              onClick={() => {
-                navigate("/home");
-              }}
-              cursor={"pointer"}
-              height={"50px"}
-              src={logo}
-            ></Image>
+            <Stack direction={"row"} spacing={7}>
+              <Image
+                onClick={() => {
+                  navigate(`/`);
+                }}
+                cursor={"pointer"}
+                height={"50px"}
+                src={logo}
+              />
+              <Button
+                onClick={() => {
+                  navigate(`/feed?page=1`);
+                }}
+              >
+                Feed
+              </Button>
+            </Stack>
           </Box>
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>

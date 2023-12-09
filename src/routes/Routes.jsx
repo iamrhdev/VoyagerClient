@@ -5,6 +5,7 @@ import { useRoutes } from "react-router-dom";
 import NotFound from "../pages/notfound/NotFound";
 import Login from "../pages/login/Login";
 import SignUp from "../pages/signup/SignUp";
+import Feed from "../pages/feed/Feed";
 
 export default function Routes() {
   let routes = [
@@ -16,8 +17,8 @@ export default function Routes() {
           element: <Home />,
         },
         {
-          path: "/home",
-          element: <Home />,
+          path: `/feed`,
+          element: <Feed />,
         },
         {
           path: "/login",
